@@ -1,0 +1,4 @@
+User-agent: *
+Sitemap: https://neighborlynook.com/sitemap.xml
+Disallow: /ghost/
+Disallow: /p/
