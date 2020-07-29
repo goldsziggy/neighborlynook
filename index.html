@@ -9,7 +9,7 @@
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=ae7b9e3481" />
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css?v=369d8c44bd" />
 
 	<meta name="description" content="Borrow our cup of sugar" />
     <link rel="canonical" href="https://neighborlynook.com/" />
@@ -37,7 +37,9 @@
         "url": "https://neighborlynook.com/",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://neighborlynook.com/content/images/2020/07/Youtube-logologo-yt.png"
+            "url": "https://neighborlynook.com/content/images/2020/07/Youtube-logologo-yt.png",
+            "width": 60,
+            "height": 60
         }
     },
     "url": "https://neighborlynook.com/",
@@ -68,6 +70,25 @@
         display: none;
     }
 </style>
+
+<!-- Misc Styles --> 
+<style>
+.post-card-image {
+  /* make a square container */
+  width: 150px;
+  height: 150px;
+
+  /* fill the container, preserving aspect ratio, and cropping to fit */
+  background-size: cover;
+
+  /* center the image vertically and horizontally */
+  background-position: top center;
+
+  /* round the edges to a circle with border radius 1/2 container size */
+  border-radius: 50%;
+}
+
+</style>
 </head>
 
 <body class="home-template">
@@ -79,9 +100,7 @@
 				</span>
 				<ul>
 		<li class="nav-home active"><a href="https://neighborlynook.com/"><span>Home</span></a></li>
-		<li class="nav-tag"><a href="https://neighborlynook.com/tag/getting-started/"><span>Tag</span></a></li>
-		<li class="nav-author"><a href="https://neighborlynook.com/author/ghost/"><span>Author</span></a></li>
-		<li class="nav-help"><a href="https://ghost.org/docs/"><span>Help</span></a></li>
+		<li class="nav-authors"><a href="https://neighborlynook.com/authors/"><span>Authors</span></a></li>
 </ul>
 
 				<ul class="nav-side">
@@ -128,6 +147,23 @@
 </div>
 
 
+<article class="post tag-recipe tag-breastfeeding tag-baby no-image">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="/lactation-cookies/">No Bake Lactation Bites</a></h2>
+			<span class="post-meta">
+				By
+				<a href="/author/samantha/">Samantha Zygowicz</a>
+				in <a class="post-meta-tag" href="/tag/recipe/">recipe</a>
+				on
+				<time datetime="28-07-2020">28 Jul 2020</time>
+			</span>
+			<p class="post-excerpt">no-bake lactation cookies to boost milk supply&hellip;</p>
+		</div>
+	</div>
+</article>
+
+
 <nav class="pagination" aria-label="Pagination">
 	<div class="inner">
 		<div class="box pagination-box">
@@ -161,6 +197,9 @@
 								</span>
 								<h2 class="archive-title">Topics</h2>
 								<span class="post-tags archive-taglist">
+											<a href='/tag/recipe/'>recipe: 1</a>
+											<a href='/tag/breastfeeding/'>breastfeeding: 1</a>
+											<a href='/tag/baby/'>baby: 1</a>
 								</span>
 							</div>
 						</div>
@@ -180,7 +219,7 @@
 
 	</section>
 
-	<script type="text/javascript" src="/assets/js/script.js?v=ae7b9e3481"></script>
+	<script type="text/javascript" src="/assets/js/script.js?v=369d8c44bd"></script>
 
 	
 
