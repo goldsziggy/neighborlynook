@@ -75,7 +75,24 @@
       <link rel="stylesheet" type="text/css" href="/assets/css/post.css?v=6617667196" media="screen" />
 
 
-    
+      <style>
+    .m-hero__picture {
+      background-image: url(/content/images/size/w2000/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg);
+    }
+  
+    @media(max-width: 1000px) {
+      .m-hero__picture {
+        background-image: url(/content/images/size/w1000/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg);
+      }
+    }
+  
+    @media(max-width: 600px) {
+      .m-hero__picture {
+        background-image: url(/content/images/size/w600/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg);
+      }
+    }
+  </style>
+
 
     <link rel="canonical" href="https://neighborlynook.com/how-this-blog-was-made/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -86,22 +103,26 @@
     <meta property="og:title" content="How this blog was made" />
     <meta property="og:description" content="Building this blog went through multiple iterations.  The objective being sought after was ease-of-use combined with the ability to be hosted as a static site.   Network DiagramDiagram showing the interaction flowChoosing the MediumWhen looking into possible solutions I knew right away that ease-of-use had to be involved as the primary" />
     <meta property="og:url" content="https://neighborlynook.com/how-this-blog-was-made/" />
+    <meta property="og:image" content="https://neighborlynook.com/content/images/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg" />
     <meta property="article:published_time" content="2020-08-02T01:18:31.000Z" />
-    <meta property="article:modified_time" content="2020-08-02T01:19:28.000Z" />
+    <meta property="article:modified_time" content="2020-08-02T01:51:56.000Z" />
     <meta property="article:tag" content="developer" />
     <meta property="article:tag" content="code" />
     <meta property="article:tag" content="webdev" />
     
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="How this blog was made" />
     <meta name="twitter:description" content="Building this blog went through multiple iterations.  The objective being sought after was ease-of-use combined with the ability to be hosted as a static site.   Network DiagramDiagram showing the interaction flowChoosing the MediumWhen looking into possible solutions I knew right away that ease-of-use had to be involved as the primary" />
     <meta name="twitter:url" content="https://neighborlynook.com/how-this-blog-was-made/" />
+    <meta name="twitter:image" content="https://neighborlynook.com/content/images/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Matthew Zygowicz" />
     <meta name="twitter:label2" content="Filed under" />
     <meta name="twitter:data2" content="developer, code, webdev" />
     <meta name="twitter:site" content="@ghost" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="1122" />
     
     <script type="application/ld+json">
 {
@@ -135,7 +156,13 @@
     "headline": "How this blog was made",
     "url": "https://neighborlynook.com/how-this-blog-was-made/",
     "datePublished": "2020-08-02T01:18:31.000Z",
-    "dateModified": "2020-08-02T01:19:28.000Z",
+    "dateModified": "2020-08-02T01:51:56.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://neighborlynook.com/content/images/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg",
+        "width": 2000,
+        "height": 1122
+    },
     "keywords": "developer, code, webdev",
     "description": "Building this blog went through multiple iterations.  The objective being sought\nafter was ease-of-use combined with the ability to be hosted as a static site.\n\n\n--------------------------------------------------------------------------------\n\nNetwork Diagram\nDiagram showing the interaction flowChoosing the Medium\nWhen looking into possible solutions I knew right away that ease-of-use had to\nbe involved as the primary objective here is to allow my wife to make posts.\n With that said, I did look ",
     "mainEntityOfPage": {
@@ -200,7 +227,7 @@
 
 
   
-<header class="m-header  js-header">
+<header class="m-header with-picture js-header">
   <div class="m-mobile-topbar" data-aos="fade-down">
     <button class="m-icon-button in-mobile-topbar js-open-menu" aria-label="Open menu">
       <span class="icon-menu" aria-hidden="true"></span>
@@ -251,13 +278,13 @@
                               <div class="glide__slides">
                                 <div class="glide__slide">
                                   <a href="/how-this-blog-was-made/" class="m-recent-article">
-                                    <div class="m-recent-article__picture no-picture">
-                                        <img src="/assets/images/no-image.png?v=6617667196" loading="lazy" alt="">
+                                    <div class="m-recent-article__picture ">
+                                        <img src="/content/images/size/w300/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg" loading="lazy" alt="">
                                     </div>
                                     <h3 class="m-recent-article__title js-recent-article-title" title="How this blog was made">
                                       How this blog was made
                                     </h3>
-                                    <span class="m-recent-article__date">29 minutes ago</span>
+                                    <span class="m-recent-article__date">an hour ago</span>
                                   </a>
                                 </div>
                                 <div class="glide__slide">
@@ -358,12 +385,14 @@
 
 <main class="main-wrap">
     
-  <section class="m-hero no-picture in-post" data-aos="fade">
+
+  <section class="m-hero with-picture" data-aos="fade">
+    <div class="m-hero__picture in-post"></div>
     </section>
   
   <article>
     <div class="l-content in-post">
-        <div class="l-wrapper in-post no-image js-aos-wrapper" data-aos="fade-up"
+        <div class="l-wrapper in-post  js-aos-wrapper" data-aos="fade-up"
           data-aos-delay="300">
           <div
             class="l-post-content   js-progress-content">
