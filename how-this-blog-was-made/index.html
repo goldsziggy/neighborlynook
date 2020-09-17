@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>How this blog was made</title>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preload" href="/assets/css/app.css?v=66111758e3" as="style" />
+  <link rel="preload" href="/assets/js/manifest.js?v=66111758e3" as="script" />
+  <link rel="preload" href="/assets/js/vendor/content-api.min.js?v=66111758e3" as="script" />
+  <link rel="preload" href="/assets/js/vendor.js?v=66111758e3" as="script" />
+  <link rel="preload" href="/assets/js/app.js?v=66111758e3" as="script" />
+  <link rel="preconnect" href="https://polyfill.io">
+  <link rel="dns-prefetch" href="https://polyfill.io">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <!-- configure Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap"
+    rel="stylesheet">
+
+    <link rel="preload" href="/assets/css/post.css?v=66111758e3" as="style" />
+  <link rel="preload" href="/assets/js/post.js?v=66111758e3" as="script" />
+
+
+  <style>
+    /* These font-faces are here to make fonts work if the Ghost instance is installed in a subdirectory */
+
+    /* iconmoon */
+    @font-face {
+      font-family: 'icomoon';
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+      src: url("/assets/fonts/icomoon/icomoon.eot?vukg2s?v=66111758e3");
+      src: url("/assets/fonts/icomoon/icomoon.eot?vukg2s#iefix?v=66111758e3") format('embedded-opentype'),
+      url("/assets/fonts/icomoon/icomoon.ttf?vukg2s?v=66111758e3") format('truetype'),
+      url("/assets/fonts/icomoon/icomoon.woff?vukg2s?v=66111758e3") format('woff'),
+      url("/assets/fonts/icomoon/icomoon.svg?vukg2s#icomoon?v=66111758e3") format('svg');
+    }
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/app.css?v=66111758e3" media="screen" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/post.css?v=66111758e3" media="screen" />
+
+
+    <style>
+    .m-hero__picture {
+      background-image: url(/content/images/size/w2000/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg);
+    }
+  
+    @media(max-width: 1000px) {
+      .m-hero__picture {
+        background-image: url(/content/images/size/w1000/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg);
+      }
+    }
+  
+    @media(max-width: 600px) {
+      .m-hero__picture {
+        background-image: url(/content/images/size/w600/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg);
+      }
+    }
+  </style>
+
+
+  <link rel="canonical" href="https://neighborlynook.com/how-this-blog-was-made/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://neighborlynook.com/how-this-blog-was-made/amp/" />
+    
+    <meta property="og:site_name" content="Neighborly Nook" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How this blog was made" />
+    <meta property="og:description" content="Building this blog went through multiple iterations.  The objective being sought after was ease-of-use combined with the ability to be hosted as a static site.   Network DiagramDiagram showing the interaction flowChoosing the MediumTo create a blogging platform for the family, I started by listing out the requirements for the platform." />
+    <meta property="og:url" content="https://neighborlynook.com/how-this-blog-was-made/" />
+    <meta property="og:image" content="https://neighborlynook.com/content/images/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg" />
+    <meta property="article:published_time" content="2020-08-02T01:18:31.000Z" />
+    <meta property="article:modified_time" content="2020-08-29T11:49:46.000Z" />
+    <meta property="article:tag" content="developer" />
+    <meta property="article:tag" content="code" />
+    <meta property="article:tag" content="webdev" />
+    
+    <meta property="article:publisher" content="https://www.facebook.com/ghost" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How this blog was made" />
+    <meta name="twitter:description" content="Building this blog went through multiple iterations.  The objective being sought after was ease-of-use combined with the ability to be hosted as a static site.   Network DiagramDiagram showing the interaction flowChoosing the MediumTo create a blogging platform for the family, I started by listing out the requirements for the platform." />
+    <meta name="twitter:url" content="https://neighborlynook.com/how-this-blog-was-made/" />
+    <meta name="twitter:image" content="https://neighborlynook.com/content/images/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Matthew Zygowicz" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="developer, code, webdev" />
+    <meta name="twitter:site" content="@ghost" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="1122" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Neighborly Nook",
+        "url": "https://neighborlynook.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://neighborlynook.com/content/images/2020/07/Youtube-logologo-yt.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Matthew Zygowicz",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://neighborlynook.com/content/images/2020/07/me.png",
+            "width": 512,
+            "height": 512
+        },
+        "url": "https://neighborlynook.com/author/matthew/",
+        "sameAs": [
+            "http://neighborlynook.com"
+        ]
+    },
+    "headline": "How this blog was made",
+    "url": "https://neighborlynook.com/how-this-blog-was-made/",
+    "datePublished": "2020-08-02T01:18:31.000Z",
+    "dateModified": "2020-08-29T11:49:46.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://neighborlynook.com/content/images/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg",
+        "width": 2000,
+        "height": 1122
+    },
+    "keywords": "developer, code, webdev",
+    "description": "Building this blog went through multiple iterations.  The objective being sought\nafter was ease-of-use combined with the ability to be hosted as a static site.\n\n\n--------------------------------------------------------------------------------\n\nNetwork Diagram\nDiagram showing the interaction flowChoosing the Medium\nTo create a blogging platform for the family, I started by listing out the\nrequirements for the platform.   The three requirements I decided on were;\nease-of-use, extensibility, and ab",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://neighborlynook.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.33" />
+    <link rel="alternate" type="application/rss+xml" title="Neighborly Nook" href="https://neighborlynook.com/rss/" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174592801-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-174592801-1');
+</script>
+
+
+<!-- configure TOCBot --> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css">
+<style>
+    .toc-link::before{
+        display: none;
+    }
+</style>
+
+<!-- Misc Styles --> 
+<style>
+</style>
+
+<!-- prism.js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-tomorrow.min.css" integrity="sha512-vswe+cgvic/XBoF1OcM/TeJ2FW0OofqAVdCZiEYkd6dwGXthvkSFWOoGGJgS2CW70VK5dQM5Oh+7ne47s74VTg==" crossorigin="anonymous" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-okaidia.min.css" integrity="sha512-mIs9kKbaw6JZFfSuo+MovjU+Ntggfoj8RwAmJbVXQ5mkAX5LlgETQEweFPI18humSPHymTb5iikEOKWF7I8ncQ==" crossorigin="anonymous" />
+<style>
+    .token.operator {
+        background: 0 0;
+    }
+</style>
+
+  <script>
+    // @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&dn=expat.txt Expat
+    const ghostHost = "https://neighborlynook.com"
+      // @license-end
+  </script>
+</head>
+
+<body class="post-template tag-developer tag-code tag-webdev">
+  
+
+
+
+  
+<header class="m-header with-picture js-header">
+  <div class="m-mobile-topbar" data-aos="fade-down">
+    <button class="m-icon-button in-mobile-topbar js-open-menu" aria-label="Open menu">
+      <span class="icon-menu" aria-hidden="true"></span>
+    </button>
+      <a href="https://neighborlynook.com" class="m-logo in-mobile-topbar">
+        <img src="/content/images/2020/07/Youtube-logologo-yt.png" alt="Neighborly Nook">
+      </a>
+    <button class="m-icon-button in-mobile-topbar js-open-search" aria-label="Open search">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="m-menu js-menu">
+    <button class="m-icon-button outlined as-close-menu js-close-menu" aria-label="Close menu">
+      <span class="icon-close"></span>
+    </button>
+    <div class="m-menu__main" data-aos="fade-down">
+      <div class="l-wrapper">
+        <div class="m-nav">
+          <nav class="m-nav__left" role="navigation" aria-label="Main menu">
+            <ul>
+                <li class="only-desktop">
+                  <a href="https://neighborlynook.com" class="m-logo">
+                    <img src="/content/images/2020/07/Youtube-logologo-yt.png" alt="Neighborly Nook">
+                  </a>
+                </li>
+                
+    <li class="nav-home">
+      <a href="https://neighborlynook.com/">Home</a>
+    </li>
+    <li class="nav-authors">
+      <a href="https://neighborlynook.com/authors/">Authors</a>
+    </li>
+    <li class="nav-tags">
+      <a href="https://neighborlynook.com/tags/">Tags</a>
+    </li>
+
+              <li class="js-submenu-option">
+                <button class="m-icon-button in-menu-main more js-toggle-submenu" aria-label="Open submenu">
+                  <span class="icon-more" aria-hidden="true"></span>
+                </button>
+                <div class="m-submenu js-submenu">
+                  <div class="l-wrapper in-submenu">
+                    <section class="m-recent-articles">
+                      <h3 class="m-submenu-title in-recent-articles">Recent articles</h3>
+                          <div class="glide js-recent-slider">
+                            <div class="glide__track" data-glide-el="track">
+                              <div class="glide__slides">
+                                <div class="glide__slide">
+                                  <a href="/recognizing-understanding-postpartum/" class="m-recent-article">
+                                    <div class="m-recent-article__picture ">
+                                        <img src="https://images.unsplash.com/photo-1560305850-d90e0af2ff18?ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;2000&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ" loading="lazy" alt="">
+                                    </div>
+                                    <h3 class="m-recent-article__title js-recent-article-title" title="Recognizing &amp; Understanding Postpartum">
+                                      Recognizing &amp; Understanding Postpartum
+                                    </h3>
+                                    <span class="m-recent-article__date">19 days ago</span>
+                                  </a>
+                                </div>
+                                <div class="glide__slide">
+                                  <a href="/the-benefits-of-breastfeeding-vs-formula/" class="m-recent-article">
+                                    <div class="m-recent-article__picture ">
+                                        <img src="https://images.unsplash.com/photo-1523881542461-305ab566932f?ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;2000&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ" loading="lazy" alt="">
+                                    </div>
+                                    <h3 class="m-recent-article__title js-recent-article-title" title="The Benefits of Breastfeeding vs Formula">
+                                      The Benefits of Breastfeeding vs Formula
+                                    </h3>
+                                    <span class="m-recent-article__date">a month ago</span>
+                                  </a>
+                                </div>
+                                <div class="glide__slide">
+                                  <a href="/how-this-blog-was-made/" class="m-recent-article">
+                                    <div class="m-recent-article__picture ">
+                                        <img src="/content/images/size/w300/2020/08/taylor-vick-M5tzZtFCOfs-unsplash.jpg" loading="lazy" alt="">
+                                    </div>
+                                    <h3 class="m-recent-article__title js-recent-article-title" title="How this blog was made">
+                                      How this blog was made
+                                    </h3>
+                                    <span class="m-recent-article__date">2 months ago</span>
+                                  </a>
+                                </div>
+                                <div class="glide__slide">
+                                  <a href="/pregnancy-during-covid-19/" class="m-recent-article">
+                                    <div class="m-recent-article__picture ">
+                                        <img src="https://images.unsplash.com/photo-1585222515068-7201a72c4181?ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;2000&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ" loading="lazy" alt="">
+                                    </div>
+                                    <h3 class="m-recent-article__title js-recent-article-title" title="Pregnancy &amp; Delivery during COVID-19">
+                                      Pregnancy &amp; Delivery during COVID-19
+                                    </h3>
+                                    <span class="m-recent-article__date">2 months ago</span>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </section>
+                    <section class="m-tags">
+                      <h3 class="m-submenu-title">Tags</h3>
+                        <ul>
+                            <li>
+                              <a href="/tag/baby/">baby</a>
+                            </li>
+                            <li>
+                              <a href="/tag/bottle-fed/">bottle fed</a>
+                            </li>
+                            <li>
+                              <a href="/tag/breastfeeding/">breastfeeding</a>
+                            </li>
+                            <li>
+                              <a href="/tag/clothing/">clothing</a>
+                            </li>
+                            <li>
+                              <a href="/tag/code/">code</a>
+                            </li>
+                            <li>
+                              <a href="/tag/developer/">developer</a>
+                            </li>
+                            <li>
+                              <a href="/tag/enfamil/">Enfamil</a>
+                            </li>
+                            <li>
+                              <a href="/tag/formula/">formula</a>
+                            </li>
+                            <li>
+                              <a href="/tag/lactation/">lactation</a>
+                            </li>
+                            <li>
+                              <a href="/tag/nursing/">nursing</a>
+                            </li>
+                        </ul>
+                    </section>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <div class="m-nav__right">
+            <button class="m-icon-button in-menu-main js-open-search" aria-label="Open search">
+              <span class="icon-search" aria-hidden="true"></span>
+            </button>
+            <div class="m-toggle-darkmode js-tooltip" data-tippy-content="Toggle dark mode" tabindex="0">
+              <label for="toggle-darkmode" class="sr-only">
+                Toggle dark mode
+              </label>
+              <input id="toggle-darkmode" type="checkbox" class="js-toggle-darkmode">
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<main class="main-wrap">
+    
+
+  <section class="m-hero with-picture" data-aos="fade">
+    <div class="m-hero__picture in-post"></div>
+    </section>
+  
+  <article>
+    <div class="l-content in-post">
+        <div class="l-wrapper in-post  js-aos-wrapper" data-aos="fade-up"
+          data-aos-delay="300">
+          <div
+            class="l-post-content   js-progress-content">
+            <header class="m-heading">
+              <h1 class="m-heading__title in-post">How this blog was made</h1>
+              <div class="m-heading__meta">
+                  <a href="https://neighborlynook.com/tag/developer/" class="m-heading__meta__tag">developer</a>
+                  <span class="m-heading__meta__divider" aria-hidden="true">&bull;</span>
+                <span class="m-heading__meta__time">Aug 01, 2020</span>
+              </div>
+            </header>
+            <div class="pos-relative js-post-content">
+              <div class="m-share">
+                <div class="m-share__content js-sticky">
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=https://neighborlynook.com/how-this-blog-was-made/"
+                    class="m-icon-button filled in-share" target="_blank" rel="noopener" aria-label="Facebook">
+                    <span class="icon-facebook" aria-hidden="true"></span>
+                  </a>
+                  <a href="https://twitter.com/intent/tweet?text=How%20this%20blog%20was%20made&url=https://neighborlynook.com/how-this-blog-was-made/"
+                    class="m-icon-button filled in-share" target="_blank" rel="noopener" aria-label="Twitter">
+                    <span class="icon-twitter" aria-hidden="true"></span>
+                  </a>
+                  <button class="m-icon-button filled in-share progress js-scrolltop" aria-label="Scroll to top">
+                    <span class="icon-arrow-top" aria-hidden="true"></span>
+                    <svg aria-hidden="true">
+                      <circle class="progress-ring__circle js-progress" fill="transparent" r="0" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <p>Building this blog went through multiple iterations.  The objective being sought after was ease-of-use combined with the ability to be hosted as a static site.  </p><!--kg-card-begin: html--><aside class="toc"></aside><!--kg-card-end: html--><hr><h2 id="network-diagram">Network Diagram</h2><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://neighborlynook.com/content/images/2020/07/Neighborly-Nook-Setup-1.png" class="kg-image" alt srcset="https://neighborlynook.com/content/images/size/w600/2020/07/Neighborly-Nook-Setup-1.png 600w, https://neighborlynook.com/content/images/size/w1000/2020/07/Neighborly-Nook-Setup-1.png 1000w, https://neighborlynook.com/content/images/size/w1600/2020/07/Neighborly-Nook-Setup-1.png 1600w, https://neighborlynook.com/content/images/2020/07/Neighborly-Nook-Setup-1.png 1768w" sizes="(min-width: 720px) 720px"><figcaption>Diagram showing the interaction flow</figcaption></figure><h2 id="choosing-the-medium">Choosing the Medium</h2><p>To create a blogging platform for the family, I started by listing out the requirements for the platform.   The three requirements I decided on were; ease-of-use, extensibility, and ability to self-host or deploy to a static site.  With that in mind, I looked into the below applications.</p><p><strong>WordPress: </strong>I used to do work/blog on a WordPress platform, and while I found the ease-of-use to be there, I never quite liked the UX (and plugin system overload).  So I ruled this one out.</p><p><strong>Gatsby + GitHub pages: </strong>As I started down the path of scaffolding a blogging application out, and started writing the first post, I saw the folder-structure and markdown articles and said "ok, maybe I have to teach the wife a few things".  Then I got to the deployment and thought "Junior engineers struggle with Git, teaching my wife to regurgitate commands shouldn't be an option.  Maybe a script, or do I scrap the idea?"</p><p><strong>Ghost:</strong> I first heard about Ghost about a year ago, it being open-source is a plus.  But hosting costs money, and after digging around on the net I found a GitHub project for ghost-on-GitHub as a static site, which checks my speed of hosting box!  So I started down this path...</p><h2 id="installation">Installation</h2><p>Installation on my home infrastructure was a cinch as most pieces are dockerized. So  to make it work, I did as all good engineers do, and followed in the footsteps of someone else (see ghost-configuration-guide from the resources). I feel as though I'd be doing a disservice by attempting to regurgitate an already good guide for the installation steps of the pieces.  The only part not captured by the guide is setting up my ghost-to-github-pages docker image.  </p><p><strong>Ghost to GitHub pages:</strong></p><figure class="kg-card kg-code-card"><pre><code class="language-bash">docker build --build-arg GH_PAT=abc123 --build-arg GH_REPO=github.com/goldsziggy/neighborlynook.git --build-arg GHOST_SERVER_URL="https://hidden.example.com" --build-arg GIT_EMAIL="matt@zygowicz.com" --build-arg GIT_NAME="Matthew Zygwoicz" -t ghost-on-git .</code></pre><figcaption>docker build command</figcaption></figure><figure class="kg-card kg-code-card"><pre><code>docker run -it ghost-on-git</code></pre><figcaption>docker run commands</figcaption></figure><h2 id="how-it-works-">How it works.</h2><p>This section will more-or-less be going over the following network diagram.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://neighborlynook.com/content/images/2020/07/Neighborly-Nook-Setup-1.png" class="kg-image" alt srcset="https://neighborlynook.com/content/images/size/w600/2020/07/Neighborly-Nook-Setup-1.png 600w, https://neighborlynook.com/content/images/size/w1000/2020/07/Neighborly-Nook-Setup-1.png 1000w, https://neighborlynook.com/content/images/size/w1600/2020/07/Neighborly-Nook-Setup-1.png 1600w, https://neighborlynook.com/content/images/2020/07/Neighborly-Nook-Setup-1.png 1768w" sizes="(min-width: 720px) 720px"><figcaption>Diagram showing the interaction flow</figcaption></figure><p>Both the diagram and our blogging adventures start with the family navigating to the Ghost application in the browser via an internal URL.  Behind the scenes, the request is sent to our local server and filtered through the Nginx config.  The Nginx config, which works as a reverse proxy, intercepts the subdomain and forwards the request to ghost running on that server.  From there Ghost can simply behave as normal and serve up its user experience and allow us to write our blog pages.</p><p>The bottom half of the diagram shows user/viewer traffic.  Notice that the line never actually touches our infrastructure and instead all get filtered through Github.  That is because this blog is 100% hosted as static pages from Github (check out the repo from the resources below!).  The dockerized cronjob is the magic glue to make this happen.</p><p>The dockerized job is a simple script. The script takes the following actions:</p><ol><li>Sets up a local git user profile</li><li>Clones the GitHub repo where the static site will be hosted using a Personal Access Token</li><li>Removes all non-git-related files, and adds the CNAME file for GitHub  (this is to have clean commits).</li><li>Use the <code>ghost-static-site-generator</code> npm module to generate the static site. </li><li>Push up the new changeset</li></ol><p>The containerization and scheduling of those 5 steps allow the automation of a static-site generator and easy-to-use blog.  Below you will see the snippet from the dockerized script, or feel free to visit the Github mentioned in the resources below. </p><p>In my home infrastructure I am running my update cron job every hour (which admittedly boosts my Github contribution chart, so I may make a dummy account for this eventually).</p><h3 id="the-script">The Script<br></h3><pre><code class="language-bash">#!/bin/sh
+
+echo "Starting script."
+# git stuffz
+echo "configuring the git profile."
+git config --global user.email "${GIT_EMAIL}"
+git config --global user.name "${GIT_NAME}"
+
+# Reset the ghost dir
+echo "Reseting the GHOST_PATH: $GHOST_PATH directory"
+rm -rf $GHOST_PATH
+mkdir $GHOST_PATH
+cd $GHOST_PATH
+
+# Clone into the new dir
+echo "Cloning into the GHOST_PATH"
+git clone https://${GH_PAT}:x-oauth-basic@${GH_REPO} $GHOST_PATH
+
+# Clean cloned directory
+git rm -rf .
+git clean -fxd
+
+# Place our CNAME file back
+echo $REMOTE_URL &gt;&gt; CNAME
+
+# Run the command to make the static page
+echo "Starting the static page crawler"
+gssg --domain $GHOST_SERVER_URL --url $REMOTE_URL --dest $GHOST_PATH
+
+# push it up!
+echo "Push the change up"
+git add .
+# git commit -am "updated site"
+# https://stackoverflow.com/a/35027514
+LANG=C git -c color.status=false status \
+| sed -n -r -e '1,/Changes to be committed:/ d' \
+            -e '1,1 d' \
+            -e '/^Untracked files:/,$ d' \
+            -e 's/^\s*//' \
+            -e '/./p' \
+| git commit -F -
+
+# Push up our new commit!
+git push</code></pre><h2 id="resources">Resources</h2><p><strong>ghost-to-static-pages</strong>: <a href="https://www.npmjs.com/package/ghost-static-site-generator">https://www.npmjs.com/package/ghost-static-site-generator</a></p><p><strong>ghost configuration guide</strong>: <a href="https://technicalramblings.com/blog/how-to-setup-a-ghost-site-with-letsencrypt-and-mariadb-on-unraid/">https://technicalramblings.com/blog/how-to-setup-a-ghost-site-with-letsencrypt-and-mariadb-on-unraid/</a></p><p><strong>docker-ghost-on-github repo: </strong><a href="https://github.com/goldsziggy/docker-ghost-on-github">https://github.com/goldsziggy/docker-ghost-on-github</a></p><p><strong>neighborly-nook GitHub page</strong>: <a href="https://github.com/goldsziggy/neighborlynook">https://github.com/goldsziggy/neighborlynook</a></p><p></p><p></p><p></p>
+                <section class="m-tags in-post">
+                  <h3 class="m-submenu-title">Tags</h3>
+                  <ul>
+                      <li>
+                        <a href="/tag/developer/" title="developer">developer</a>
+                      </li>
+                      <li>
+                        <a href="/tag/code/" title="code">code</a>
+                      </li>
+                      <li>
+                        <a href="/tag/webdev/" title="webdev">webdev</a>
+                      </li>
+                  </ul>
+                </section>
+            </div>
+          </div>
+        </div>
+        <section class="m-author">
+          <div class="m-author__content">
+            <div class="m-author__picture">
+              <a href="https://neighborlynook.com/author/matthew/" class="m-author-picture" aria-label="Matthew Zygowicz">
+                  <div style="background-image: url(https://neighborlynook.com/content/images/2020/07/me.png);"></div>
+              </a>
+            </div>
+            <div class="m-author__info">
+              <h4 class="m-author__name">
+                <a href="https://neighborlynook.com/author/matthew/">Matthew Zygowicz</a>
+              </h4>
+                <p class="m-author__bio">The dad of the family.  I am a Senior Engineer by trade at Northwestern Mutual working on the Login/Registration team.</p>
+              <ul class="m-author-links">
+                  <li>
+                    <a href="http://neighborlynook.com" target="_blank" rel="noopener" aria-label="Website">
+                      <span class="icon-globe" aria-hidden="true"></span>
+                    </a>
+                  </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="m-recommended">
+          <div class="l-wrapper in-recommended">
+            <h3 class="m-section-title in-recommended">Recommended for you</h3>
+            <div class="m-recommended-articles">
+              <div class="m-recommended-slider glide js-recommended-slider">
+                <div class="glide__track" data-glide-el="track">
+                  <div class="glide__slides">
+                    
+    <header class="m-heading no-margin">
+      <h3>No posts found</h3>
+      <p>
+        Apparently there are no posts at the moment, check again later.
+      </p>
+    </header>
+                  </div>
+                </div>
+                <div data-glide-el="controls" class="glide__arrows js-controls">
+                  <button data-glide-dir="<" class="m-icon-button filled in-recommended-articles glide-prev" aria-label="Previous">
+                    <span class="icon-arrow-left" aria-hidden="true"></span>
+                  </button>
+                  <button data-glide-dir=">" class="m-icon-button filled in-recommended-articles glide-next" aria-label="Next">
+                    <span class="icon-arrow-right" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </div>
+  </article>
+</main>
+
+
+
+  
+<div class="m-search js-search" role="dialog" aria-modal="true" aria-label="Search">
+  <button class="m-icon-button outlined as-close-search js-close-search" aria-label="Close search">
+    <span class="icon-close" aria-hidden="true"></span>
+  </button>
+  <div class="m-search__content">
+    <form class="m-search__form">
+      <div class="pos-relative">
+        <span class="icon-search m-search-icon" aria-hidden="true"></span>
+        <label for="search-input" class="sr-only">
+          Type to search
+        </label>
+        <input id="search-input" type="text" class="m-input in-search js-input-search" placeholder="Type to search">
+      </div>
+    </form>
+    <div class="js-search-results hide"></div>
+    <p class="m-not-found align-center hide js-no-results">
+      No results for your search, please try with something else.
+    </p>
+  </div>
+</div>
+
+  
+<footer class="m-footer">
+  <div class="m-footer__content">
+    <p class="m-footer-copyright">
+      <span>Neighborly Nook &copy; 2020</span>
+      <span>&nbsp; &bull; &nbsp;</span>
+      <span>Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a></span>
+    </p>
+
+    <nav class="m-footer-social">
+        <a href="https://www.facebook.com/ghost" target="_blank" rel="noopener" aria-label="Facebook">
+          <span class="icon-facebook"></span>
+        </a>
+        <a href="https://twitter.com/ghost" target="_blank" rel="noopener" aria-label="Twitter">
+          <span class="icon-twitter"></span>
+        </a>
+    </nav>
+    <p class="m-footer-copyright jslicense">
+      <a href="/assets/html/javascript.html?v=66111758e3" rel="jslicense">JavaScript license information</a>
+    </p>
+  </div>
+</footer>
+
+  <div class="m-alert success subscribe js-alert" data-notification="subscribe">
+  Great! You&#x27;ve successfully subscribed.
+  <button class="m-alert__close js-notification-close" aria-label="Close">
+    <span class="icon-close"></span>
+  </button>
+</div>
+
+<div class="m-alert success signup js-alert" data-notification="signup">
+  Great! Next, complete checkout for full access.
+  <button class="m-alert__close js-notification-close" aria-label="Close">
+    <span class="icon-close"></span>
+  </button>
+</div>
+
+<div class="m-alert success signin js-alert" data-notification="signin">
+  Welcome back! You&#x27;ve successfully signed in.
+  <button class="m-alert__close js-notification-close" aria-label="Close">
+    <span class="icon-close"></span>
+  </button>
+</div>
+
+<div class="m-alert success checkout js-alert" data-notification="checkout">
+  Success! Your account is fully activated, you now have access to all content.
+  <button class="m-alert__close js-notification-close" aria-label="Close">
+    <span class="icon-close"></span>
+  </button>
+</div>
+  <script crossorigin="anonymous"
+    src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver%2CPromise%2CArray.prototype.includes%2CString.prototype.endsWith%2CString.prototype.startsWith%2CObject.assign%2CNodeList.prototype.forEach"></script>
+  <script defer src="/assets/js/manifest.js?v=66111758e3"></script>
+  <script defer src="/assets/js/vendor/content-api.min.js?v=66111758e3"></script>
+  <script defer src="/assets/js/vendor.js?v=66111758e3"></script>
+  <script defer src="/assets/js/app.js?v=66111758e3"></script>
+
+    <script defer src="/assets/js/post.js?v=66111758e3"></script>
+
+
+  <!-- configure TOCBot --> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        tocSelector: '.toc',
+        contentSelector: '.post-content',
+        hasInnerContainers: false
+    });
+</script>
+
+<!-- prism.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js" integrity="sha512-WkVkkoB31AoI9DAk6SEEEyacH9etQXKUov4JRRuM1Y681VsTq7jYgrRw06cbP6Io7kPsKx+tLFpH/HXZSZ2YEQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-markup.min.js" integrity="sha512-n7jTZRfbcHJ8Nwq9QmPPuEdScPL4Uti1yfvA/iA237hYf/XIOntX2JSiOjOpuPX/lOanojimXQZKu3L3MM763w==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-css.min.js" integrity="sha512-zDjwO/e5eVa5WfYra8CE827RFyA/nqhp8y4da+geEpAqpCnmfAHopCNobQ9sJeLBMQY0OLB+hT+k6bbb0FhdYQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-javascript.min.js" integrity="sha512-bcEaqkUmZaRn/mfetUNsz6y4SxOcc+eEqXOzWYWeXfSUS9mt1C/12fBAxT99mKcA1U1tIw6O9o17+AGqQ3Wmtg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-bash.min.js" integrity="sha512-undB7JF5cHZkHEnrvpIR6vpLG/3YR5LeDjvGKMDvr5WD7U6Xrkhymp8asv7ausEICQorcKjq3BIjz0vI5yJCnA==" crossorigin="anonymous"></script>
+</body>
+
+</html>
