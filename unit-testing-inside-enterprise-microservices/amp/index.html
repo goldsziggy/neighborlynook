@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://neighborlynook.com/unit-testing-inside-enterprise-microservices/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1542744094-24638eff58bb?ixlib&#x3D;rb-1.2.1&amp;q&#x3D;80&amp;fm&#x3D;jpg&amp;crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;w&#x3D;2000&amp;fit&#x3D;max&amp;ixid&#x3D;eyJhcHBfaWQiOjExNzczfQ" />
     <meta property="article:published_time" content="2020-10-25T23:09:46.000Z" />
-    <meta property="article:modified_time" content="2020-10-25T23:09:46.000Z" />
+    <meta property="article:modified_time" content="2020-11-17T21:28:30.000Z" />
     <meta property="article:tag" content="developer" />
     <meta property="article:tag" content="code" />
     <meta property="article:tag" content="webdev" />
@@ -68,7 +68,7 @@
     "headline": "Unit Testing Inside Enterprise Microservices",
     "url": "https://neighborlynook.com/unit-testing-inside-enterprise-microservices/",
     "datePublished": "2020-10-25T23:09:46.000Z",
-    "dateModified": "2020-10-25T23:09:46.000Z",
+    "dateModified": "2020-11-17T21:28:30.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "https://images.unsplash.com/photo-1542744094-24638eff58bb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ",
@@ -689,27 +689,32 @@ const { currencyConversion } = require('../src/soap') // the sample soap service
 &lt;/soap:Envelope&gt;`
 
 const sampleErrorResponse = `&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;soap:Body&gt;&lt;soap:Fault&gt;&lt;faultcode&gt;soap:Client&lt;/faultcode&gt;&lt;faultstring&gt;Server was unable to read request. ---&amp;gt; There is an error in XML document (12, 18). ---&amp;gt; The string \'1603068090810\n      \' is not a valid AllXsd value.&lt;/faultstring&gt;&lt;detail /&gt;&lt;/soap:Fault&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;`
-</code></pre><p>Soap responses are generally more verbose than REST responses, with varying XML tags being used in the response. It is for that reason I recommend storing these responses in a variable.  In this example, I hard-coded strings to the top of the file, but as a better practice, I would make these responses live in the folder with the soap request.</p><h3 id="test-type-1-happy-path">Test-Type 1: Happy Path</h3><pre><code class="language-js">it('Should return the currency upon success', async (done) =&gt; {
-  nock(soapURL).post('/converter.asmx?WSDL').reply(200, sampleSuccessResponse)
+</code></pre><p>Soap responses are generally more verbose than REST responses, with varying XML tags being used in the response. It is for that reason I recommend storing these responses in a variable.  In this example, I hard-coded strings to the top of the file, but as a better practice, I would make these responses live in the folder with the soap request.</p><h3 id="test-type-1-happy-path">Test-Type 1: Happy Path</h3><pre><code class="language-js">it('Should return the currency upon success', async () =&gt; {
+  nock(soapURL)
+    .post('/converter.asmx?WSDL')
+    .reply(200, sampleSuccessResponse)
   const val = await currencyConversion(Date.now(), false)
   expect(val).toEqual(15)
-  done()
 })
-</code></pre><p>The happy path testing is always the smallest of the tests. Here we simply call out function and rely on nock to reply with our consistent sampleSuccessResposne.  Following the <code>nock</code> API, we specify the baseURL for our soap service and tell nock to force a reply with 200 success-code and our sample success response.</p><h3 id="test-type-2-verify-dynamic-requests">Test-Type 2: Verify Dynamic Requests</h3><pre><code class="language-js">it('Should set currency to US when isUSD is true', async (done) =&gt; {
-  let isCurrencySetAndCorrect = false
+</code></pre><p>The happy path testing is always the smallest of the tests. Here we simply call out function and rely on nock to reply with our consistent sampleSuccessResposne.  Following the <code>nock</code> API, we specify the baseURL for our soap service and tell nock to force a reply with 200 success-code and our sample success response.</p><h3 id="test-type-2-verify-dynamic-requests">Test-Type 2: Verify Dynamic Requests</h3><pre><code class="language-js">it('Should set currency to US when isUSD is true', async () =&gt; {
+  expect.assertions(1)
+                                                                
   nock(soapURL)
     .post(`/converter.asmx?WSDL`)
     .reply(200, (uri, requestBody) =&gt; {
       const parsed = parser.parse(requestBody)
       const parsedRate = lodash.get(parsed, 'soap:Envelope.soap:Body.GetCurrencyRate')
-      isCurrencySetAndCorrect = parsedRate.Currency === 'US'
+      expect(parsedRate.Currency).toEqual('US')
     })
+    
   await currencyConversion(Date.now(), true)
-  expect(isCurrencySetAndCorrect).toEqual(true)
-  done()
+
 })
-</code></pre><p>In our sample enterprise service, our soap requesting function will build an XML string based on a dynamic template.  The above test, confirms the correctness of the dynamically generated XML.  To do this, we leverage nock's ability to apply introspection on the requestBody.  You will notice we don't put our expect statement within the nock mock, we separate it like this because if the URL is never called the expect would never be called to error out our test properly.</p><h3 id="test-type-3-the-expected-error-case">Test-Type 3: The Expected Error Case</h3><pre><code class="language-js">it('Should throw the soap Error when there is XML returned', async (done) =&gt; {
-  nock(soapURL).post('/converter.asmx?WSDL').reply(500, sampleErrorResponse)
+</code></pre><p>In our sample enterprise service, our soap requesting function will build an XML string based on a dynamic template.  The above test, confirms the correctness of the dynamically generated XML.  To do this, we leverage nock's ability to apply introspection on the requestBody.  You will noticed after our await, we leverage Jests <code>expect.assertions</code> api to verify our assertion was actually called.  This call out happens at the beginning of the file to let Jest know what to expect.</p><h3 id="test-type-3-the-expected-error-case">Test-Type 3: The Expected Error Case</h3><pre><code class="language-js">it('Should throw the soap Error when there is XML returned', async (done) =&gt; {
+  nock(soapURL)
+    .post('/converter.asmx?WSDL')
+    .reply(500, sampleErrorResponse)
+    
   try {
     await currencyConversion(Date.now(), false)
   } catch (e) {
@@ -720,15 +725,18 @@ const sampleErrorResponse = `&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;soa
 })
 </code></pre><p>The above test case shows us forcing a 500 response with our expected <code>errorResponseXML</code> object. The logic within our sample service is designed to create a new error with the proper message derived from our XML object.  This test ensures that our expected error message exists.</p><h2 id="testing-a-standard-post-call-to-an-enterprise-service">Testing a standard POST call to an enterprise service</h2><p><code>https://github.com/goldsziggy/enterprise-testing-patterns/blob/master/__tests__/services.spec.js</code></p><p>Writing test cases to individual services can be a valuable task - at times.  My philosophy here is that rest service calls should be simple concise functions with little functionality.  These small functions will create a lot of 'boilerplate' looking tests.</p><h3 id="the-imports-1">The Imports</h3><pre><code class="language-js">const nock = require('nock')
 const services = require('../src/services')
-</code></pre><p>For testing our small service calls we simply require our <code>nock</code> library once again.  We will leverage this library to mock successes, failures, and timeouts all without making the network request.  Below, we will simply leverage the nock function in different ways to enable us to create/cause errors</p><h3 id="test-case-1-the-happy-path">Test-Case 1: The Happy Path</h3><pre><code class="language-js">it('Should return the data on a successful call', async (done) =&gt; {
+</code></pre><p>For testing our small service calls we simply require our <code>nock</code> library once again.  We will leverage this library to mock successes, failures, and timeouts all without making the network request.  Below, we will simply leverage the nock function in different ways to enable us to create/cause errors</p><h3 id="test-case-1-the-happy-path">Test-Case 1: The Happy Path</h3><pre><code class="language-js">it('Should return the data on a successful call', async () =&gt; {
   const id = '123'
   const mockData = { foo: 'bar' }
-  nock('https://ghibliapi.herokuapp.com').get(`/films/${id}`).reply(200, mockData)
+  
+  nock('https://ghibliapi.herokuapp.com')
+    .get(`/films/${id}`)
+    .reply(200, mockData)
+    
   const data = await services.getByFilmId(id, { info: jest.fn(), error: jest.fn() })
   expect(data).toEqual(mockData)
-  done()
 })
-</code></pre><p>Paying attention to the line with the service call, you will notice us leverage jest mocks.  In this example, our service is passed a child logger of Bunyan that is used to log out.  Because we are not in the middle of our express call stack, we have to mock the implementation of that object to not cause errors</p><h3 id="test-case-2-the-expected-failure">Test-Case 2: The Expected Failure</h3><pre><code class="language-js">it('Should throw an error when the service is down', async (done) =&gt; {
+</code></pre><p>Paying attention to the line with the service call, you will notice us leverage jest mocks.  In this example, our service is passed a child logger of Bunyan that is used to log out.  Because we are not in the middle of our express call stack, we have to mock the implementation of that object to not cause errors</p><h3 id="test-case-2-the-expected-failure">Test-Case 2: The Expected Failure</h3><pre><code class="language-js">it('Should throw an error when the service is down', async () =&gt; {
   const id = '123'
   nock('https://ghibliapi.herokuapp.com')
     .get(`/films/${id}`)
@@ -739,7 +747,6 @@ const services = require('../src/services')
   } catch (e) {
     expect(e.message).toEqual('Request failed with status code 500')
   }
-  done()
 })
 </code></pre><h3 id="test-case-3-the-timeout-behavior">Test-Case 3: The timeout behavior</h3><pre><code class="language-js">it('Should throw an error if the service call timesout', async (done) =&gt; {
   const id = '123'
