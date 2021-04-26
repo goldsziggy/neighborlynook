@@ -1,1 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//neighborlynook.com/sitemap.xsl"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://neighborlynook.com/sitemap-pages.xml</loc><lastmod>2021-04-19T08:04:36.695Z</lastmod></sitemap><sitemap><loc>https://neighborlynook.com/sitemap-posts.xml</loc><lastmod>2020-11-17T21:28:30.000Z</lastmod></sitemap><sitemap><loc>https://neighborlynook.com/sitemap-authors.xml</loc><lastmod>2021-04-14T00:39:59.000Z</lastmod></sitemap><sitemap><loc>https://neighborlynook.com/sitemap-tags.xml</loc><lastmod>2020-08-29T15:42:17.000Z</lastmod></sitemap></sitemapindex>
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.18.0</center>
+</body>
+</html>
